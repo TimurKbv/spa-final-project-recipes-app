@@ -1,0 +1,235 @@
+{
+	"info": {
+		"_postman_id": "73230298-a2df-44f3-8faf-c787a9a29460",
+		"name": "Recipe API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getAllRecipes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/recipes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"recipes",
+						""
+					],
+					"query": [
+						{
+							"key": "country",
+							"value": "italy",
+							"disabled": true
+						},
+						{
+							"key": "category",
+							"value": "noodles",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getPaginatedRecipes",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/recipes/paginate?page=1&size=10",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"recipes",
+						"paginate"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "size",
+							"value": "10"
+						},
+						{
+							"key": "country",
+							"value": "italy",
+							"disabled": true
+						},
+						{
+							"key": "category",
+							"value": "noodles",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getRecipeById",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/recipes/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"recipes",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllCountries",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/countries",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"countries"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "getAllCategories",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/categories",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"categories"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "createNewRecipe",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"category\": \"Noodles\",\n    \"country\": \"Italy\",\n    \"title\": \"Spaghetti Napoli\",\n    \"description\": \"Super nice italian pasta fooda\",\n    \"picture\": \"http://localhost:8080/assets/images/recipes/spaghetti.jpg\",\n    \"cooktime\": 20,\n    \"ingredients\": [\n        \"Pasta\",\n        \"Water\",\n        \"Salt\"\n    ],\n    \"procedure\": \"1. Heat the salted water until it's boiling\\n2. Put the pasta in the boiling water\\n3. Wait 10 minutes\\n4. Get the pasta out of the water\\n5. Enjoy ;-)\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/recipes/",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"recipes",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateRecipeById",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"id\": 1,\n    \"category\": \"Noodles 2.0\",\n    \"country\": \"Italy\",\n    \"title\": \"Spaghetti Napoli\",\n    \"description\": \"Super nice italian pasta fooda\",\n    \"picture\": \"http://localhost:8080/assets/images/recipes/spaghetti.jpg\",\n    \"cooktime\": 20,\n    \"ingredients\": [\n        \"Pasta\",\n        \"Water\",\n        \"Salt\"\n    ],\n    \"procedure\": \"1. Heat the salted water until it's boiling\\n2. Put the pasta in the boiling water\\n3. Wait 10 minutes\\n4. Get the pasta out of the water\\n5. Enjoy ;-)\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/recipes/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"recipes",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "1"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteRecipeById",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/recipes/:id",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"recipes",
+						":id"
+					],
+					"variable": [
+						{
+							"key": "id",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
