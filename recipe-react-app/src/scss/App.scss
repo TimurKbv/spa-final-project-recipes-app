@@ -1,10 +1,50 @@
-
+*, *::after, *::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 body {
   div.container {
     background-color: lightgrey;
+    width: 100%;
   }
 
   h1 {
     color: black;
   }
+  h2 {
+    text-align: center;
+  }
+  nav {
+    ul {
+      list-style: none;
+      li {
+        transition: all 0.7s;
+        padding: 15px;
+  
+        a {
+          padding: 15px;
+        }
+      }
+      li:hover {
+        color: orangered;
+      }
+    }
+  }
+
+}
+/* article {
+  gap: 2em;
+  padding: 2em;
+}
+article div {
+  width: 100px;
+  height: 100px;
+  background-color: gray;
+  margin: 0 auto;
+}
+ */
+
+.active {
+  background-color: lightgray;
 }
