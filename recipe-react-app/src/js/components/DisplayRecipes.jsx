@@ -1,6 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+export const DEFAULT_BUTTON_STYLES = "bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded";
+
 function DisplayRecipes({recipes }) {
     console.log(recipes);
 
@@ -22,15 +24,16 @@ function DisplayRecipes({recipes }) {
               <li>
                 <h4>Country: {recipe.country}</h4>
               </li>
+
             </ul>
             {/* ADD BUTTON */}
-            <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            <button className={DEFAULT_BUTTON_STYLES}>
               Add to Favourites
             </button>
             {/* Link zur Details */}
             <Link
               to={"/details/" + recipe.id}
-              className="text-center bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded"
+              className={`${DEFAULT_BUTTON_STYLES} text-center`}
             >
               Details
             </Link>

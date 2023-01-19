@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { DEFAULT_BUTTON_STYLES } from "./DisplayRecipes";
 
 export const RECIPES_URL = "http://localhost:8080/recipes/";
 
@@ -14,12 +15,24 @@ function DetailRecipe() {
 
     (async function fetchData() {
       let fetchURL = RECIPES_URL + id;
-      let data = await (await axios.get(fetchURL)).data;
-      setRecipe(data);
-      console.log(data);
+      try {
+        // RECIPE nach ID fetchen
+        let data = await (await axios.get(fetchURL)).data;
+        // in der recipestate speichern
+        setRecipe(data);
+      } catch (error) {
+        // Log Error
+        console.error(error);
+      } finally {
+        // Loading Completed
+        setLoading(false);
+      }
     })();
-    setLoading(false);
   }, []);
+
+  function name(params) {
+    
+  }
 
   return (
     <>
@@ -45,8 +58,27 @@ function DetailRecipe() {
               <li>
                 <h4>Country: {recipe.country}</h4>
               </li>
+              <li>
+                <h4>Cooktime: {recipe.cooktime}</h4>
+              </li>
+              <li>
+                <h4>Description</h4>
+                <p>{recipe.description}</p>
+              </li>
+              <li>
+                <h4>Ingredients</h4>
+                <p>{recipe.ingredients}</p>
+              </li>
+              <li>
+                <h4>Procedure</h4>
+                <p>{recipe.procedure}</p>
+              </li>
             </ul>
-            <button className="bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-4 border border-blue-500 hover:border-transparent rounded">
+            <button  className={DEFAULT_BUTTON_STYLES}>
+              Edit recipe
+              
+            </button>
+            <button className={DEFAULT_BUTTON_STYLES}>
               Add to Favourites
             </button>
           </div>

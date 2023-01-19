@@ -48,3 +48,7 @@ article div {
 .active {
   background-color: lightgray;
 }
+
+button:disabled {
+  opacity: 0.4;
+}
