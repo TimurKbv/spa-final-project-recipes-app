@@ -42,12 +42,12 @@ function Home() {
         </div>
       ) : (
         /* Ansonsten werden die Rezepte gerendert */
-        <article className="bg-lime-600 w-full grid grid-cols-2 auto-rows-auto gap-10 p-10">
+        <article className=" w-full grid grid-cols-3 auto-rows-auto gap-10 p-10">
           <DisplayRecipes recipes={recipes} />
         </article>
       )}
       <div className="flex justify-center py-10">
-        <Link to={"/recipes/"} className={`${DEFAULT_BUTTON_STYLES} text-center mx-auto`}>
+        <Link to={"/recipes/"} className={`${DEFAULT_BUTTON_STYLES} bg-gray-200 text-center mx-auto text-2xl px-7 py-3`}>
             Show more
         </Link>
       </div>

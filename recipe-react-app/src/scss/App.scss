@@ -1,20 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@400;700&display=swap');
+
+
+
 *, *::after, *::before {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 body {
+
+  background-color: #eff0f1;
+  font-family: 'Merriweather', serif;
   div.container {
     background-color: lightgrey;
     width: 100%;
   }
+  
 
   h1 {
     color: black;
+    font-family: 'Merriweather', serif;
   }
-  h2 {
-    text-align: center;
-  }
+
   nav {
     ul {
       list-style: none;
@@ -33,21 +40,17 @@ body {
   }
 
 }
-/* article {
-  gap: 2em;
-  padding: 2em;
-}
-article div {
-  width: 100px;
-  height: 100px;
-  background-color: gray;
-  margin: 0 auto;
-}
- */
 
-.active {
-  background-color: lightgray;
+.details-list {
+
+  h4 {
+
+    span {
+      opacity: 0.5;
+    }
+  }
 }
+
 
 button:disabled {
   opacity: 0.4;

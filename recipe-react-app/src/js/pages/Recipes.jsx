@@ -19,7 +19,7 @@ function Recipes() {
   const [country, setCountry] = useState("");
   const [category, setCategory] = useState("");
 
-  //TODO options rendern
+  //TODO options rendern, Edit erstellen, delete buttons erstellen
 
   useEffect(() => {
     setLoading(true);
@@ -75,7 +75,7 @@ function Recipes() {
     <>
       <div className="container flex flex-col">
         {/* FILTERS */}
-        <FilterRecipe setPage={setPageParams} setItemsPerPage={setItemsPerPage} setCategory={setCategory} setCountry={setCountry} />
+        <FilterRecipe setPage={setPageParams} setItemsPerPage={setItemsPerPage} setCategory={setCategory} setCountry={setCountry} recipes={recipes} />
 
         {/* REZEPTE RENDERING in GRID Container*/}
         {isLoading ? 
@@ -84,7 +84,7 @@ function Recipes() {
                 <h2 className="text-5xl text-center">LOADING...</h2>
             </div>)
            : /* Ansonsten werden die Rezepte gerendert */
-            (<article className="bg-lime-600 w-full grid grid-cols-2 auto-rows-auto gap-10 p-10">
+            (<article className=" w-full grid grid-cols-3 auto-rows-auto gap-10 p-10">
                 <DisplayRecipes recipes={recipes} />
              </article>)
             }
