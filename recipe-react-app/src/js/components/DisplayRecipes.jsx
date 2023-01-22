@@ -1,15 +1,17 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+
 
 export const DEFAULT_BUTTON_STYLES =
   "mx-auto bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-3 rounded inline-flex items-center text-center";
 
-function DisplayRecipes({ recipes }) {
+function DisplayRecipes({ recipes, removeRecipe }) {
   console.log(recipes);
 
   let displayRecipes = recipes.map((recipe) => {
+
     return (
-      <div key={recipe.id} className="flex items-center flex-col gap-3 bg-gray-500 p-5 rounded-xl">
+      <div key={recipe.id} className="flex items-center flex-col gap-3 bg-gray-200 p-5 rounded-3xl shadow-2xl hover:bg-white hover:translate-y-1 transition-all ">
         <div className="w-2/3 h-1/2 ">
           <img
             src={recipe.picture}
@@ -28,10 +30,11 @@ function DisplayRecipes({ recipes }) {
             <h4>Country: {recipe.country}</h4>
           </li>
         </ul>
-        <div className="flex flex-col gap-3 justify-evenly w-full">
+        <div className="flex flex-col gap-3 justify-evenly w-full text-sm">
           {/* ADD BUTTON */}
-          <button className={DEFAULT_BUTTON_STYLES}>Add to Favourites</button>
+          
           <div className="flex">
+
                         {/* Link zur Details */}
             <Link
               to={"/details/" + recipe.id}
@@ -39,13 +42,18 @@ function DisplayRecipes({ recipes }) {
             >
               Details
             </Link>
+            <button className={DEFAULT_BUTTON_STYLES}>To Favourites</button>
             {/* DELETE BUTTON */}
-            <button className={DEFAULT_BUTTON_STYLES}>Remove</button>
+            <button
+            onClick={(evt) =>removeRecipe(recipe)}
+            className={DEFAULT_BUTTON_STYLES}>Remove</button>
           </div>
         </div>
       </div>
     );
   });
+
+
 
   return (
     <>

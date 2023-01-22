@@ -4,8 +4,8 @@ import { Link } from "react-router-dom";
 function Layout() {
   return (
     <>
-      <h1 className="text-4xl text-center py-9">Recipe React App</h1>
-      <nav className="bg-gray-900 p-4">
+      {/* <h1 className="text-4xl text-center py-9">Lecker Kochen</h1> */}
+      <nav className="bg-neutral-900 p-4">
         <ul className="flex justify-evenly text-3xl text-gray-200 font-bold text-center">
           <li>
             <Link to="/">Home</Link>

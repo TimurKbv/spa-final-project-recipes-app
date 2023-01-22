@@ -4,6 +4,7 @@ import axios from "axios";
 import Pagination from "../components/Pagination";
 import FilterRecipe from "../components/FilterRecipe";
 import DisplayRecipes from "../components/DisplayRecipes";
+import removeRecipe from "../helpers/RemoveRecipe";
 
 
 const ITEMS_PER_PAGE_DEFAULT = 1;
@@ -18,8 +19,9 @@ function Recipes() {
   const [totalPages, setTotalPages] = useState(1);
   const [country, setCountry] = useState("");
   const [category, setCategory] = useState("");
+  const [isDeleted, setDeleted] = useState(false);
 
-  //TODO options rendern, Edit erstellen, delete buttons erstellen
+  //TODO DELETE Funktions optiomieren | Styles 
 
   useEffect(() => {
     setLoading(true);
@@ -53,7 +55,7 @@ function Recipes() {
     }, 500)
 
     // Mache useEffect abhängig von FILTER und der aktuellen PAGE
-  }, [country, category, itemsPerPage, page]);
+  }, [country, category, itemsPerPage, page, isDeleted]);
 
   useEffect( () => {
 
@@ -69,11 +71,26 @@ function Recipes() {
   function setPageParams(page) {
     setSearchParams({page: page});
   }
+  /* -------------------------------DELETE FUNKTION KANN MAN OPTIMIEREN------------------------ */
+  function removeRecipe(recipe) {
+    console.log(recipe);
+    // delete
+    axios
+    .delete("http://localhost:8080/recipes/" + recipe.id)
+    .then((res) => {
+      console.log(res);
+      setDeleted((prev) => prev = !prev )
+    })
+    .catch((err) => {
+    // behandle fehler vom User
+    console.error(err);
+    }); 
 
-
+  }
+/* ------------------------------------------------------------------------ ------------------------*/
   return (
     <>
-      <div className="container flex flex-col">
+      <div className="container recipes-container flex flex-col">
         {/* FILTERS */}
         <FilterRecipe setPage={setPageParams} setItemsPerPage={setItemsPerPage} setCategory={setCategory} setCountry={setCountry} recipes={recipes} />
 
@@ -85,12 +102,13 @@ function Recipes() {
             </div>)
            : /* Ansonsten werden die Rezepte gerendert */
             (<article className=" w-full grid grid-cols-3 auto-rows-auto gap-10 p-10">
-                <DisplayRecipes recipes={recipes} />
+                <DisplayRecipes recipes={recipes} removeRecipe={removeRecipe} />
              </article>)
             }
-        {/* PAGINATION */}
-       {(recipes.length > 0) && <Pagination page={page} setPageParams={setPageParams}  totalPages={totalPages} />}
+        
       </div>
+      {/* PAGINATION */}
+      {(recipes.length > 0) && <Pagination page={page} setPageParams={setPageParams}  totalPages={totalPages} />}
     </>
   );
 }

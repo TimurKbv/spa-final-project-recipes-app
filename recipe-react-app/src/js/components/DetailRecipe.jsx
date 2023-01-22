@@ -4,6 +4,8 @@ import axios from "axios";
 import { DEFAULT_BUTTON_STYLES } from "./DisplayRecipes";
 import EditForm from "./EditForm";
 import DetailsList from "./DetailsList";
+import { useNavigate } from "react-router-dom";
+
 
 export const RECIPES_URL = "http://localhost:8080/recipes/";
 
@@ -12,7 +14,7 @@ function DetailRecipe() {
   const [recipe, setRecipe] = useState({});
   const { id } = useParams();
   const [isEditClicked, setEditClicked] = useState(false);
-
+  const navigate = useNavigate();
 
   useEffect(() => {
     setLoading(true);
@@ -34,10 +36,9 @@ function DetailRecipe() {
     })();
   }, []);
 
-
+// Erzeuge entweder unordentliche Liste oder bei "edit button" click eine Form 
   let editedData = useMemo(() => {
-    console.log(isEditClicked);
-    console.log(recipe);
+
     if (isEditClicked) {
       return (
         <EditForm recipe={recipe} setRecipe={setRecipe} setEditClicked={setEditClicked} />
@@ -49,11 +50,23 @@ function DetailRecipe() {
     }
   }, [isEditClicked, recipe])
 
-  function handleEdit() {
-    setEditClicked(true);
-    console.log(editedData);
-    console.log(isEditClicked);
-  }
+/* -------------------------------DELETE FUNKTION KANN MAN OPTIMIEREN------------------------ */
+function removeRecipe(recipe) {
+  console.log(recipe);
+  // delete
+  axios
+  .delete("http://localhost:8080/recipes/" + id)
+  .then((res) => {
+    console.log(res);
+    navigate("/recipes", {replace: true});
+    /* setDeleted((prev) => prev = !prev ) */
+  })
+  .catch((err) => {
+  // behandle fehler vom User
+  console.error(err);
+  }); 
+}
+/* -------------------------------------------------------------------------------------------- */
 
   return (
     <>
@@ -71,48 +84,19 @@ function DetailRecipe() {
               />
             </div>
             {/* BESCHREIBUNG */}
-
             {editedData}
-
-            {/* <DetailsList recipe={recipe} /> */}
-            {/* <ul className=" h-full flex flex-col gap-2 px-10 details-list">
-              <li className="">
-                <h2 className="font-bold text-xl ">{recipe.title}</h2>
-              </li>
-              <li>
-                <h4 >
-                  <span>Category:</span> {recipe.category}
-                </h4>
-              </li> 
-              <li>
-                <h4 ><span>Country:</span> {recipe.country}</h4>
-              </li>
-              <li>
-                <h4 ><span>Cooktime:</span> {recipe.cooktime}</h4>
-              </li>
-              <li>
-                <h4 ><span>Ingredients</span></h4>
-                <p >{recipe.ingredients}</p>
-              </li>
-              <li>
-                <h4 ><span>Description</span></h4>
-                <p >{recipe.description}</p>
-              </li>
-              <li>
-                <h4><span>Procedure</span></h4>
-                <p > {recipe.procedure}</p>
-              </li>
-            </ul> */}
           </div>
           {/* BUTTONS */}
           <div className="btns flex justify-center p-10 gap-5">
-              <button onClick={handleEdit}  className={DEFAULT_BUTTON_STYLES}>
+              <button onClick={() => setEditClicked(true)}  className={DEFAULT_BUTTON_STYLES}>
                 Edit recipe
               </button>
               <button className={`${DEFAULT_BUTTON_STYLES}  bg-green-600`}>
                 Add to Favourites
               </button>
-              <button className={`${DEFAULT_BUTTON_STYLES} bg-red-500`}>
+              <button 
+              onClick={removeRecipe}
+              className={`${DEFAULT_BUTTON_STYLES} bg-red-500`}>
                 Delete recipe
               </button>
             </div>

@@ -15,8 +15,8 @@ function App() {
   // TODO STYLES NotFoundPage | AXIOS PARAMS ERSTELLEN | Create Recipe / Edit Recipe | REDIRECT
 
   return (
-    <div className="App">
-      <div className='container mx-auto'>
+    <div className="App min-h-screen">
+      <div className='container mx-auto min-h-screen'>
         <BrowserRouter>
           <Routes>
             <Route path='/' element={<Layout/>} >

@@ -26,7 +26,7 @@ body {
     ul {
       list-style: none;
       li {
-        transition: all 0.7s;
+        transition: all 0.3s;
         padding: 15px;
   
         a {
@@ -34,7 +34,7 @@ body {
         }
       }
       li:hover {
-        color: orangered;
+        color: rgba(238, 218, 86, 0.956)
       }
     }
   }
@@ -54,4 +54,8 @@ body {
 
 button:disabled {
   opacity: 0.4;
+}
+
+.recipes-container {
+  min-height: 83vh;
 }

@@ -16,8 +16,6 @@ function FormCreateRecipe() {
     const [inputsAreFullfilled, setInputsAreFullfilled] = useState(false);
     const navigate = useNavigate();
 
-
-
     // Prüfe ob alle Angaben da sind um den button zu aktivieren
   useEffect(() => {
     if (title.length > 0 && category.length > 0 && country.length > 0 && description.length > 0 && image.length > 0 && procedure.length > 0 && cooktime > 0 && ingredients.length > 0) {
