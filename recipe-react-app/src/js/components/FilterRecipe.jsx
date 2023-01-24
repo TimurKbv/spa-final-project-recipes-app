@@ -7,7 +7,7 @@ function FilterRecipe({ setCountry, setCategory, setItemsPerPage, setPage, recip
   const [countryOptions, setCountryOptions] = useState([]);
   const [categoryOptions, setCategoryOptions] = useState([]);
 
-
+  /* Hole Filters */
   function handleCountry(evt) {
     setCountry(evt.target.value.toLowerCase());
     setPage(1);
@@ -36,17 +36,18 @@ function FilterRecipe({ setCountry, setCategory, setItemsPerPage, setPage, recip
           console.error(error);
         } 
       })();
-
+      /* Speichere in CountryOptions-State alle Länder die es gibts */
     setCountryOptions(() => {
         let filter = 'country';
         return getOptions(filter)
     });
+      /* Speichere in CategoryOptions-State alle categories die es gibts */
     setCategoryOptions(() => {
         let filter = 'category';
         return getOptions(filter)
     })
-
   }, [recipes]);
+
 
 //   HILFSFUNKTION um options zu bekommen
   function getOptions(filter) {
@@ -59,7 +60,8 @@ function FilterRecipe({ setCountry, setCategory, setItemsPerPage, setPage, recip
 
 
   return (
-    <ul className="bg- w-full  flex justify-evenly p-5 ">
+
+      <ul className="bg- w-full  flex justify-evenly p-5 font-bold">
         {/* Countries Filter */}
       <li className="flex flex-col gap-3 items-center ">
         <label htmlFor="country-select">Country</label>
@@ -89,7 +91,7 @@ function FilterRecipe({ setCountry, setCategory, setItemsPerPage, setPage, recip
         {/* Items per page Filter */}
       <li className="flex flex-col gap-3 items-center ">
         <label htmlFor="category-select"> Items Per Page</label>
-        <select
+        <select defaultValue={10}
           onChange={(evt) => handleItemsPerPage(evt)}
           id="items-per-page-select"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"

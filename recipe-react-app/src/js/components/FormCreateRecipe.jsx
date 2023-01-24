@@ -101,8 +101,8 @@ function FormCreateRecipe() {
                     <textarea onChange={evt => setProcedure(evt.target.value)}  value={procedure} id="procedure" rows="5" className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder=""></textarea>
                 </fieldset>
 
-                <fieldset className=" mx-auto w-1/2 flex justify-center pt-5 pb-10">
-                    <button disabled={!inputsAreFullfilled} className={`${DEFAULT_BUTTON_STYLES} text-center`}>
+                <fieldset className=" mx-auto w-1/2 flex justify-center pt-5 pb-10 ">
+                    <button disabled={!inputsAreFullfilled} className={`bg-transparent hover:bg-blue-500 text-blue-700 font-semibold hover:text-white py-2 px-7 border border-blue-500 hover:border-transparent rounded text-center`}>
                         Create Recipe
                     </button>
                 </fieldset>

@@ -4,9 +4,9 @@ function NotFoundPage() {
     
 
     return (
-        <>
-            <h1>404</h1><h2>Page not found</h2>
-        </>
+            <div className="container flex  justify-center mt-40 text-4xl">
+                <h2>404 Page not found</h2>
+            </div>
     )
 }
 

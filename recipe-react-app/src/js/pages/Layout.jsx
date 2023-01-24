@@ -4,14 +4,12 @@ import { Link } from "react-router-dom";
 function Layout() {
   return (
     <>
-      {/* <h1 className="text-4xl text-center py-9">Lecker Kochen</h1> */}
-      <nav className="bg-neutral-900 p-4">
-        <ul className="flex justify-evenly text-3xl text-gray-200 font-bold text-center">
+      
+      <nav className=" p-4 nav-bar flex">
+        <img className="object-cover w-40" src="https://www.haco.de/wp-content/themes/hacobecolorful/assets/svg/rezeptwelt-schwarz.svg" alt="" />
+        <ul className="flex justify-evenly w-full items-center text-3xl text-black font-bold text-center">
           <li>
             <Link to="/">Home</Link>
-          </li>
-          <li>
-            <Link to="/favourites">Favourites</Link>
           </li>
           <li>
             <Link to="/recipes">Recipes</Link>
@@ -20,7 +18,6 @@ function Layout() {
             <Link to="/create-recipe">Create recipe</Link>
           </li>
         </ul>
-
       </nav>
 
       <Outlet/>

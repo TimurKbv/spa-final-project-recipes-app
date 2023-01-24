@@ -2,6 +2,7 @@
 
 function DetailsList({ recipe }) {
     
+
     return (
         <ul className=" h-full flex flex-col gap-2 px-10 details-list">
               <li className="">
@@ -20,7 +21,7 @@ function DetailsList({ recipe }) {
               </li>
               <li>
                 <h4 ><span>Ingredients</span></h4>
-                <p >{recipe.ingredients}</p>
+                <p >{recipe.ingredients.join(', ')}</p>
               </li>
               <li>
                 <h4 ><span>Description</span></h4>

@@ -48,7 +48,6 @@ function Pagination({totalPages, page, setPageParams}) {
       }
 
     }
-    // let punkte = <li >...</li>;
 
     if (pages.length === 9) {
       pages.splice(3, 0, <li key={'124124314124'}>...</li>);

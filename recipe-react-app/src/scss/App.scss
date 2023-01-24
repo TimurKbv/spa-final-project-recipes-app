@@ -10,10 +10,11 @@
 body {
 
   background-color: #eff0f1;
+
   font-family: 'Merriweather', serif;
   div.container {
     background-color: lightgrey;
-    width: 100%;
+    width: 100vw;
   }
   
 
@@ -23,18 +24,20 @@ body {
   }
 
   nav {
+
     ul {
       list-style: none;
       li {
         transition: all 0.3s;
         padding: 15px;
-  
+        border-radius: 20px;
         a {
           padding: 15px;
         }
       }
       li:hover {
-        color: rgba(238, 218, 86, 0.956)
+        background-color: white;
+        transform: scale(1.1);
       }
     }
   }
@@ -59,3 +62,4 @@ button:disabled {
 .recipes-container {
   min-height: 83vh;
 }
+

@@ -7,9 +7,10 @@ import DetailsList from "./DetailsList";
 import { useNavigate } from "react-router-dom";
 
 
+
 export const RECIPES_URL = "http://localhost:8080/recipes/";
 
-function DetailRecipe() {
+function DetailRecipe({removeRecipe}) {
   const [isLoading, setLoading] = useState(true);
   const [recipe, setRecipe] = useState({});
   const { id } = useParams();
@@ -48,7 +49,7 @@ function DetailRecipe() {
         <DetailsList recipe={recipe}/>
       )
     }
-  }, [isEditClicked, recipe])
+  }, [isEditClicked, recipe]);
 
 /* -------------------------------DELETE FUNKTION KANN MAN OPTIMIEREN------------------------ */
 function removeRecipe(recipe) {
@@ -57,9 +58,7 @@ function removeRecipe(recipe) {
   axios
   .delete("http://localhost:8080/recipes/" + id)
   .then((res) => {
-    console.log(res);
     navigate("/recipes", {replace: true});
-    /* setDeleted((prev) => prev = !prev ) */
   })
   .catch((err) => {
   // behandle fehler vom User
@@ -71,34 +70,35 @@ function removeRecipe(recipe) {
   return (
     <>
       {isLoading ? (
-        <div className="container flex justify-center items-center w-screen h-screen"><h2 className="text-5xl">LOADING...</h2></div>
+        <div className="container flex justify-center items-center w-screen h-auto"><h2 className="text-5xl">LOADING...</h2></div>
       ) : (
-        <div className="container flex flex-col my-32 items-center w-screen h-screen">
-          <div  className="container flex  w-full px-10">
+        <div className="container flex flex-col mt-10 items-center w-screen h-auto">
+          <div  className="container flex flex-col  w-full px-10 ">
             {/* IMAGE CONTAINER */}
-            <div className="image-container w-1/2 ">
+            <div className="image-container w-1/2 mb-10">
               <img
                 src={recipe.picture}
                 alt="Picture Image"
-                className="w-full  object-cover"
+                className="w-full max-h-full object-cover "
               />
             </div>
             {/* BESCHREIBUNG */}
             {editedData}
           </div>
           {/* BUTTONS */}
-          <div className="btns flex justify-center p-10 gap-5">
-              <button onClick={() => setEditClicked(true)}  className={DEFAULT_BUTTON_STYLES}>
+          <div className="btns flex justify-center p-10 gap-5 ">
+              <button onClick={() => setEditClicked(true)}  className={`${DEFAULT_BUTTON_STYLES}  bg-gray-200 hover:text-white`}>
                 Edit recipe
               </button>
-              <button className={`${DEFAULT_BUTTON_STYLES}  bg-green-600`}>
+              <button disabled className={`${DEFAULT_BUTTON_STYLES} bg-gray-200 hover:text-white`}>
                 Add to Favourites
               </button>
               <button 
               onClick={removeRecipe}
-              className={`${DEFAULT_BUTTON_STYLES} bg-red-500`}>
+              className={`${DEFAULT_BUTTON_STYLES} bg-gray-200 hover:text-white`}>
                 Delete recipe
               </button>
+              
             </div>
         </div>
       )}
